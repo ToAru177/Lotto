@@ -61,7 +61,7 @@ namespace Lotto
                 Prize = 50000;
             else if (countOfWinningNumber == 3)
                 Prize = 5000;
-                
+                 
 
         }
 
