@@ -16,6 +16,8 @@ namespace Lotto
         /// </summary>
         public int Grade { get; set; }
 
+        //public Grade grade;
+
         /// <summary>
         /// 당첨금액
         /// </summary>
@@ -51,16 +53,31 @@ namespace Lotto
                     countOfBonusNumber++;
             }
 
-            if (countOfBonusNumber == 6)
+            if (countOfWinningNumber == 6)
+            {
+                Grade = 1;
                 Prize = round.FirstPrize;
-            else if ((countOfBonusNumber + countOfBonusNumber) == 6)
+            }
+            else if ((countOfWinningNumber + countOfBonusNumber) == 6)
+            {
+                Grade = 2;
                 Prize = round.SecondPrize;
+            }
             else if (countOfWinningNumber == 5)
+            {
+                Grade = 3;
                 Prize = round.ThirdPrize;
+            }
             else if (countOfWinningNumber == 4)
+            {
+                Grade = 4;
                 Prize = 50000;
+            }
             else if (countOfWinningNumber == 3)
+            {
+                Grade = 5;
                 Prize = 5000;
+            }
                  
 
         }

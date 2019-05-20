@@ -56,17 +56,37 @@ namespace Lotto
                 grades.Add(grade);
             }
 
-            foreach(Grade grade in grades)
+            foreach (Purchase purchase in purchases)
             {
-                Console.WriteLine($"[{grade.No}]등 : {grade.Count}회, {grade.Amount:C0}");
+                foreach (Grade grade in grades)
+                {
+                    if (purchase.Grade == grade.No)
+                    {
+                        grade.Count++;
+                        grade.Amount += purchase.Prize;
+                    }
+                }
             }
+            var query = from x in purchases
+                        where purchases[0].Grade == grades[0].No
+                        select x;
+
+            foreach(Grade grade in grades)
+                Console.WriteLine($"[{grade.No}]등 : {grade.Count}회, {grade.Amount:C0}");
 
 
-
-            Console.WriteLine($"총 구매금액 : {purchases.Count * 1000:C0}");
+            int totalPurchaseAmount = purchases.Count * 1000;
+            Console.WriteLine($"총 구매금액 : {totalPurchaseAmount:C0}");
             // purchases의 1등, 2등, 3등, 4등, 5등의 총 당첨금들의 합
-            Console.WriteLine($"총 당첨금액 : {0:C0}");
-            Console.WriteLine($"수익률 : {0:P2}");
+            long totalPrize = 0;
+            foreach (Grade grade in grades)
+                totalPrize += grade.Amount;
+            
+            Console.WriteLine($"총 당첨금액 : {totalPrize:C0}");
+
+            double rateOfReturn = (double)(totalPrize - totalPurchaseAmount) / (double)totalPrize;
+
+            Console.WriteLine($"수익률 : {rateOfReturn:P2}");
 
             Console.WriteLine();
         }
