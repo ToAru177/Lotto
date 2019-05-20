@@ -29,8 +29,40 @@ namespace Lotto
         public void Calculate(List<int> numbers, Round round)
         {
             //ex
+            /*
             Grade = 1;
             Prize = 2_200_000_000;
+            */
+
+            // 당첨 번호와 일치하는 번호의 개수
+            int countOfWinningNumber = 0;
+            // 보너스 번호와 일치하는 번호의 개수
+            int countOfBonusNumber = 0;
+
+            for (int i = 0; i < numbers.Count(); i++)
+            {
+                for (int j = 0; j < numbers.Count(); j++)
+                {
+                    if (numbers[i] == round.Numbers[j])
+                        countOfWinningNumber++;
+                }
+
+                if (numbers[i] == round.Bonus)
+                    countOfBonusNumber++;
+            }
+
+            if (countOfBonusNumber == 6)
+                Prize = round.FirstPrize;
+            else if ((countOfBonusNumber + countOfBonusNumber) == 6)
+                Prize = round.SecondPrize;
+            else if (countOfWinningNumber == 5)
+                Prize = round.ThirdPrize;
+            else if (countOfWinningNumber == 4)
+                Prize = 50000;
+            else if (countOfWinningNumber == 3)
+                Prize = 5000;
+                
+
         }
 
     }
