@@ -9,6 +9,9 @@ namespace Lotto
 {
     public class Purchase
     {
+        /// <summary>
+        /// 회차
+        /// </summary>
         public int No { get; set; }
 
         /// <summary>
@@ -26,16 +29,16 @@ namespace Lotto
         /// <summary>
         /// 당첨금액을 계산하는 메서드
         /// </summary>
-        /// <param name="numbers"></param>
+        /// <param name="inputNumbers"></param>
         /// <param name="round"></param>
-        public void Calculate(List<int> numbers, Round round)
+        public void Calculate(List<int> inputNumbers, Round round)
         {
 
             //일치하는 번호 갯수 구하기 LINQ 구현
-            var winningNumbers = from number in numbers
+            var winningNumbers = from inputNumber in inputNumbers
                                  from roundNumber in round.Numbers
-                                 where number == roundNumber
-                                 select new { winnigNumber = number };
+                                 where inputNumber == roundNumber
+                                 select new { winnigNumber = inputNumber };
 
             // 무조건 for문으로 돌려야 한다..
             // 미완
@@ -52,7 +55,7 @@ namespace Lotto
             //                  where number == round.Bonus
             //                  select new { bonusNumber = number };
 
-            var bonusNumber = numbers.Where(number => number == round.Bonus).Select(number => number);
+            var bonusNumber = inputNumbers.Where(inputNumber => inputNumber == round.Bonus).Select(inputNumber => inputNumber);
 
 
             // 당첨 번호와 일치하는 번호의 개수

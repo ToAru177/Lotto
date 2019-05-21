@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Lotto
 {
-    public class Grade
+    public class SummaryItem
     {
         /// <summary>
         /// 등수
         /// </summary>
-        public int No { get; set; }
+        public int Grade { get; set; }
 
         /// <summary>
         /// 당첨 횟수
