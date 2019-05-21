@@ -16,8 +16,8 @@ namespace Lotto
     {
         static void Main(string[] args)
         {
-            //List<Round> rounds = Round.Load(@"D:\IoT\C#\Lotto\lotto.txt");
-            List<Round> rounds = Round.Load(@"C:\Users\USER\Desktop\Git\Lotto\lotto.txt");
+            List<Round> rounds = Round.Load(@"D:\IoT\C#\Lotto\lotto.txt");
+            //List<Round> rounds = Round.Load(@"C:\Users\USER\Desktop\Git\Lotto\lotto.txt");
 
             Console.Write("1 ~ 45 사이 숫자 6개 입력 : ");
             string input = Console.ReadLine();
