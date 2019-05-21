@@ -37,20 +37,34 @@ namespace Lotto
             */
 
 
-            // 일치하는 번호 갯수 구하기 LINQ 구현
+            //일치하는 번호 갯수 구하기 LINQ 구현
             var winningNumbers = from number in numbers
                                  from roundNumber in round.Numbers
                                  where number == roundNumber
                                  select new { winnigNumber = number };
 
-            var bonusNumber = from number in numbers
-                              where number == round.Bonus
-                              select new { bonusNumber = number };
+            //// 무조건 for문으로 돌려야 한다...
+            //for (int i = 0; i < round.Numbers.Count(); i++)
+            //{
+
+            //}
+
+
+            //var bonusNumber = from number in numbers
+            //                  where number == round.Bonus
+            //                  select new { bonusNumber = number };
+
+            var bonusNumber = numbers.Where(number => number == round.Bonus).Select(number => number);
+
+
             // 당첨 번호와 일치하는 번호의 개수
             int countOfWinningNumber = winningNumbers.Count();
             // 보너스 번호와 일치하는 번호의 개수
             int countOfBonusNumber = bonusNumber.Count();
-            
+
+            //Console.WriteLine(countOfWinningNumber);
+            //Console.WriteLine(countOfBonusNumber);
+
              if (countOfWinningNumber == 6)
             {
                 Grade = 1;
