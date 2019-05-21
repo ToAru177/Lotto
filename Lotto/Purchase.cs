@@ -30,12 +30,6 @@ namespace Lotto
         /// <param name="round"></param>
         public void Calculate(List<int> numbers, Round round)
         {
-            //ex
-            /*
-            Grade = 1;
-            Prize = 2_200_000_000;
-            */
-
 
             //일치하는 번호 갯수 구하기 LINQ 구현
             var winningNumbers = from number in numbers
@@ -43,10 +37,14 @@ namespace Lotto
                                  where number == roundNumber
                                  select new { winnigNumber = number };
 
-            //// 무조건 for문으로 돌려야 한다...
+            // 무조건 for문으로 돌려야 한다..
+            // 미완
+            //IEnumerable<int> winningNumbers;
             //for (int i = 0; i < round.Numbers.Count(); i++)
             //{
-
+            //    winningNumbers = from number in numbers
+            //                         where number == round.Numbers[i]
+            //                         select number;
             //}
 
 
