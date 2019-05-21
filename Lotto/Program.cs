@@ -56,22 +56,35 @@ namespace Lotto
                 grades.Add(grade);
             }
 
-            foreach (Purchase purchase in purchases)
+
+            // 내부 join
+            //var lottoResultList = from purchase in purchases
+            //                      join grade in grades on purchase.Grade equals grade.No
+            //                      select new { No = grade.No, Prize = purchase.Prize };
+
+
+            var lottoResultList = from purchase in purchases
+                                  from grade in grades
+                                  where purchase.Grade == grade.No
+                                  select new { No = purchase.Grade, Prize = purchase.Prize };
+
+
+            foreach (var lottoResult in lottoResultList)
             {
                 foreach (Grade grade in grades)
                 {
-                    if (purchase.Grade == grade.No)
+                    if (lottoResult.No == grade.No)
                     {
                         grade.Count++;
-                        grade.Amount += purchase.Prize;
+                        grade.Amount += lottoResult.Prize;
                     }
                 }
             }
-            var query = from x in purchases
-                        where purchases[0].Grade == grades[0].No
-                        select x;
 
-            foreach(Grade grade in grades)
+            var Grades = from grade in grades
+                        select grade;
+
+            foreach(var grade in Grades)
                 Console.WriteLine($"[{grade.No}]등 : {grade.Count}회, {grade.Amount:C0}");
 
 

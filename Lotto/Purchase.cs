@@ -36,24 +36,22 @@ namespace Lotto
             Prize = 2_200_000_000;
             */
 
+
+            // 일치하는 번호 갯수 구하기 LINQ 구현
+            var winningNumbers = from number in numbers
+                                 from roundNumber in round.Numbers
+                                 where number == roundNumber
+                                 select new { winnigNumber = number };
+
+            var bonusNumber = from number in numbers
+                              where number == round.Bonus
+                              select new { bonusNumber = number };
             // 당첨 번호와 일치하는 번호의 개수
-            int countOfWinningNumber = 0;
+            int countOfWinningNumber = winningNumbers.Count();
             // 보너스 번호와 일치하는 번호의 개수
-            int countOfBonusNumber = 0;
-
-            for (int i = 0; i < numbers.Count(); i++)
-            {
-                for (int j = 0; j < numbers.Count(); j++)
-                {
-                    if (numbers[i] == round.Numbers[j])
-                        countOfWinningNumber++;
-                }
-
-                if (numbers[i] == round.Bonus)
-                    countOfBonusNumber++;
-            }
-
-            if (countOfWinningNumber == 6)
+            int countOfBonusNumber = bonusNumber.Count();
+            
+             if (countOfWinningNumber == 6)
             {
                 Grade = 1;
                 Prize = round.FirstPrize;
@@ -78,7 +76,6 @@ namespace Lotto
                 Grade = 5;
                 Prize = 5000;
             }
-                 
 
         }
 
