@@ -113,9 +113,9 @@ namespace Lotto
             Console.WriteLine($"총 당첨금액 : {totalPrize:C0}");
 
             //double rateOfReturn = (double)(totalPrize - totalPurchaseAmount) / (double)totalPrize;
-            //double rateOfReturn = (double)(totalPrize - totalPurchaseAmount) / (double)totalPurchaseAmount;
+            double rateOfReturn = (double)(totalPrize - totalPurchaseAmount) / (double)totalPurchaseAmount;
             // 수익률???
-            double rateOfReturn = (double)(totalPrize) / (double)totalPurchaseAmount;
+            //double rateOfReturn = (double)(totalPrize) / (double)totalPurchaseAmount;
 
             Console.WriteLine($"수익률 : {rateOfReturn:P2}");
 
